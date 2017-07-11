@@ -1,105 +1,64 @@
-<html>
+{% extends "base.html" %} {% block content %}
 
-<head>
-    <title>DaBucketList</title>
-    <link href="../assets/css/bootstrap.css" rel="stylesheet" type="text/css">
-    <style>
-        body {
-            padding-top: 70px;
-        }
-    </style>
+<!-- Page Content -->
+<div class="container">
 
-</head>
-
-<body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">DaBucketList</a>
+    <div class="row" style="position:absolute;padding-top:5%;">
+        <div class="col-lg-10" style="margin:auto;">
+            <div class="col-md-6">
+                <h1>We've all got that list of stuff we'd like to do before we reach a certain age.</h1>
+                <p class="lead">DaBucketList is here to help you keep track of that. Sign up and let's help you achieve your goals!</p>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- Default Elements -->
+            <div class="block col-md-6">
 
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2" style="float:right;">
+                <div class="block-content block-content-narrow">
+                    <form class="form-horizontal" method="post" onsubmit="return false;">
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" id="firstname" name="firstname" placeholder="Firstname">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" id="lastname" name="lastname" placeholder="Lastname">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" id="username" name="username" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" id="dob" name="dob" placeholder="Date of birth (dd/mm/yyyy)">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input class="form-control" type="password" id="password" name="password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input class="form-control" type="password" id="confirm_password" name="confirm_password" placeholder="Confirm password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-5">
+                                <button class="btn btn-sm btn-primary col-xs-12" type="submit">Sign up</button>
+                            </div>
+                            <div class="col-xs-5">
+                                <a href="#">Already a user? Log in</a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
+            <!-- END Default Elements -->
         </div>
-    </nav>
-
-    <!-- Page Content -->
-    <div class="container">
-
-        <div class="row" style="position:absolute;padding-top:5%;">
-            <div class="col-lg-10" style="margin:auto;">
-                <div class="col-md-6">
-                    <h1>We've all got that list of stuff we'd like to do before we reach a certain age.</h1>
-                    <p class="lead">DaBucketList is here to help you keep track of that. Sign up and let's help you achieve your goals!</p>
-                </div>
-                <!-- Default Elements -->
-                <div class="block col-md-6">
-
-                    <div class="block-content block-content-narrow">
-                        <form class="form-horizontal" method="post" onsubmit="return false;">
-                            <div class="form-group">
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" id="firstname" name="firstname" placeholder="Firstname">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" id="lastname" name="lastname" placeholder="Lastname">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" id="username" name="username" placeholder="Username">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" id="dob" name="dob" placeholder="Date of birth (dd/mm/yyyy)">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="password" id="password" name="password" placeholder="Password">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="password" id="confirm_password" name="confirm_password" placeholder="Confirm password">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-xs-5">
-                                    <button class="btn btn-sm btn-primary col-xs-12" type="submit">Sign up</button>
-                                </div>
-                                <div class="col-xs-5">
-                                    <a href="#">Already a user? Log in</a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- END Default Elements -->
-            </div>
-        </div>
-
     </div>
 
-    <!-- jQuery Version 1.11.1 -->
-    <script src="assets/js/jquery.js"></script>
+</div>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="assets/js/bootstrap.min.js"></script>
-
-</body>
-
-</html>
+{% endblock %}

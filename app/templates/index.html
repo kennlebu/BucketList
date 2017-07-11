@@ -1,223 +1,140 @@
-<html>
+{% extends "base.html" %} {% block content %}
+<!-- Page Content -->
+<div class="container">
 
-<head>
-    <title>DaBucketList</title>
-    <link href="../assets/css/bootstrap.css" rel="stylesheet" type="text/css">
-
-    <style>
-        body {
-            padding-top: 70px;
-        }
-        
-        .card {
-            border-radius: 3px;
-            border: 1px solid gray;
-            margin: 10 10px;
-        }
-        
-        .cards>ul>li {
-            float: left;
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .due_date {
-            font-style: italic;
-            font-size: 13px;
-            bottom: 5px;
-            position: relative;
-            float: right;
-            margin-top: 5px;
-        }
-    </style>
-
-</head>
-
-<body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">DaBucketList</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">All items</a>
-                    </li>
-                    <li>
-                        <a href="#">Accomplished</a>
-                    </li>
-                    <li>
-                        <a href="#">Pending</a>
-                    </li>
-                </ul>
-
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2" style="float:right;">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="#">Ken Lebu</a>
-                        </li>
-                        <li>
-                            <a href="#">Logout</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <div class="row" style="position:absolute;padding-top:20px;">
+        <div class="col-md-12">
+            <button class="btn-primary" type="button">Add an item</button>
         </div>
-    </nav>
-
-    <!-- Page Content -->
-    <div class="container">
-
-        <div class="row" style="position:absolute;padding-top:20px;">
-            <div class="col-md-12">
-                <button class="btn-primary" type="button">Add an item</button>
-            </div>
-            <div class="cards col-md-12" style="margin:20 auto 0 auto;">
-                <div class="card col-md-3 left">
-                    <h3>Visit New York</h3>
-                    <div class="col-xs-12">
-                        <label class="css-input switch switch-default">
+        <div class="cards col-md-12" style="margin:20 auto 0 auto;">
+            <div class="card col-md-3 left">
+                <h3>Visit New York</h3>
+                <div class="col-xs-12">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox" checked><span></span> Climb Empire State building
                                             </label>
-                    </div>
-                    <div class="col-xs-10">
-                        <label class="css-input switch switch-default">
+                </div>
+                <div class="col-xs-10">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox"><span></span> Visit Statue of Liberty
                                             </label>
-                    </div>
-                    <div class="col-xs-10">
-                        <label class="css-input switch switch-default">
+                </div>
+                <div class="col-xs-10">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox"><span></span> Visit Stark tower
                                             </label>
-                    </div>
-                    <div class="col-xs-10">
-                        <label class="css-input switch switch-default">
+                </div>
+                <div class="col-xs-10">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox"><span></span> Go to Queens
                                             </label>
-                    </div>
-                    <div class="due_date">
-                        By 36th birthday
-                    </div>
                 </div>
-                <div class="card col-md-3 left">
-                    <h3>Go to the moon</h3>
-                    <div class="col-xs-12">
-                        <label class="css-input switch switch-default">
+                <div class="due_date">
+                    By 36th birthday
+                </div>
+            </div>
+            <div class="card col-md-3 left">
+                <h3>Go to the moon</h3>
+                <div class="col-xs-12">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox" checked><span></span> Steal a space suit
                                             </label>
-                    </div>
-                    <div class="col-xs-10">
-                        <label class="css-input switch switch-default">
+                </div>
+                <div class="col-xs-10">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox"><span></span> Steal a spaceship
                                             </label>
-                    </div>
-                    <div class="col-xs-10">
-                        <label class="css-input switch switch-default">
+                </div>
+                <div class="col-xs-10">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox"><span></span> Launch into space
                                             </label>
-                    </div>
-                    <div class="col-xs-10">
-                        <label class="css-input switch switch-default">
+                </div>
+                <div class="col-xs-10">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox"><span></span> Land on the moon
                                             </label>
-                    </div>
-                    <div class="col-xs-10">
-                        <label class="css-input switch switch-default">
+                </div>
+                <div class="col-xs-10">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox"><span></span> Explore the dark side
                                             </label>
-                    </div>
-                    <div class="col-xs-10">
-                        <label class="css-input switch switch-default">
+                </div>
+                <div class="col-xs-10">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox"><span></span> Land back to earth
                                             </label>
-                    </div>
-                    <div class="due_date">
-                        By 45th birthday
-                    </div>
                 </div>
-                <div class="card col-md-3 left">
-                    <h3>Join the Avengers</h3>
-                    <div class="col-xs-12">
-                        <label class="css-input switch switch-default">
+                <div class="due_date">
+                    By 45th birthday
+                </div>
+            </div>
+            <div class="card col-md-3 left">
+                <h3>Join the Avengers</h3>
+                <div class="col-xs-12">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox" checked><span></span> Get a superhero name
                                             </label>
-                    </div>
-                    <div class="col-xs-10">
-                        <label class="css-input switch switch-default">
+                </div>
+                <div class="col-xs-10">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox"><span></span> Make a superhero suit
                                             </label>
-                    </div>
-                    <div class="col-xs-10">
-                        <label class="css-input switch switch-default">
+                </div>
+                <div class="col-xs-10">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox"><span></span> Meet Tony Stark
                                             </label>
-                    </div>
-                    <div class="col-xs-10">
-                        <label class="css-input switch switch-default">
+                </div>
+                <div class="col-xs-10">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox"><span></span> Meet Hulk
                                             </label>
-                    </div>
-                    <div class="col-xs-10">
-                        <label class="css-input switch switch-default">
+                </div>
+                <div class="col-xs-10">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox"><span></span> Meet Steve Rogers
                                             </label>
-                    </div>
-                    <div class="col-xs-10">
-                        <label class="css-input switch switch-default">
+                </div>
+                <div class="col-xs-10">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox"><span></span> Date Black Widow
                                             </label>
-                    </div>
-                    <div class="due_date">
-                        By 30th birthday
-                    </div>
                 </div>
-                <div class="card col-md-3 left">
-                    <h3>Live on an island</h3>
-                    <div class="col-xs-12">
-                        <label class="css-input switch switch-default">
+                <div class="due_date">
+                    By 30th birthday
+                </div>
+            </div>
+            <div class="card col-md-3 left">
+                <h3>Live on an island</h3>
+                <div class="col-xs-12">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox" checked><span></span> Buy an island
                                             </label>
-                    </div>
-                    <div class="col-xs-10">
-                        <label class="css-input switch switch-default">
+                </div>
+                <div class="col-xs-10">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox"><span></span> Learn how to drive a boat
                                             </label>
-                    </div>
-                    <div class="col-xs-10">
-                        <label class="css-input switch switch-default">
+                </div>
+                <div class="col-xs-10">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox"><span></span> Buy a yatch
                                             </label>
-                    </div>
-                    <div class="col-xs-10">
-                        <label class="css-input switch switch-default">
+                </div>
+                <div class="col-xs-10">
+                    <label class="css-input switch switch-default">
                                                 <input type="checkbox"><span></span> Go deep sea diving
                                             </label>
-                    </div>
-                    <div class="due_date">
-                        By 60th birthday
-                    </div>
                 </div>
-
+                <div class="due_date">
+                    By 60th birthday
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
 
-    <!-- jQuery Version 1.11.1 -->
-    <script src="assets/js/jquery.js"></script>
+</div>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="assets/js/bootstrap.min.js"></script>
-
-</body>
-
-</html>
+{% endblock %}
