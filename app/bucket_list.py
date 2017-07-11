@@ -1,4 +1,5 @@
 from datetime import datetime
+from .bucket_list_item import BucketListItem
 
 class BucketList():
     """ Contains the bucket list and the methods used to add and remove items from it """
@@ -12,11 +13,7 @@ class BucketList():
     def add_item(self, item_name):
         """ Adds an item to the bucket list """
 
-        item = {}
-        item["item_name"] = item_name
-        item["bucket_list_name"] = self.name
-        item["date_added"] = datetime.now().strftime('%Y-%m-%d')
-        item["done"] = False # Item is marked as not accomplished by default
+        item = BucketListItem(item_name, self.name)
 
         # Add the item to the items list in the bucket list
         self.items.append(item)
@@ -26,7 +23,7 @@ class BucketList():
 
         found = False
         for item in self.items:
-            if item["item_name"] == item_name:
+            if item.item_name == item_name:
                 self.items.remove(item)
                 found = True # Mark the item as found
 
@@ -40,8 +37,8 @@ class BucketList():
 
         found = False
         for item in self.items:
-            if item["item_name"] == item_name:
-                item["done"] = True
+            if item.item_name == item_name:
+                item.done = True
                 found = True
 
         if not found:
@@ -54,8 +51,8 @@ class BucketList():
 
         found = False
         for item in self.items:
-            if item["item_name"] == item_name:
-                item["done"] = False
+            if item.item_name == item_name:
+                item.done = False
                 found = True
 
         if not found:

@@ -27,7 +27,7 @@ class BucketListTest(unittest.TestCase):
 
         # Test for the date of the items in the bucket lists
         for item in bucket.items:
-            self.assertEqual(item["date_added"], datetime.now().strftime('%Y-%m-%d'),
+            self.assertEqual(item.date_added, datetime.now().strftime('%Y-%m-%d'),
                              msg='date added should be {}'.format(datetime.now().strftime('%Y-%m-%d')))
 
     def test_remove_item(self):
@@ -54,7 +54,7 @@ class BucketListTest(unittest.TestCase):
          bucket.mark_item_as_done("Go to empire state building")
          bucket.mark_item_as_done("Visit Queens")
          for item in bucket.items:
-             assert(item["done"])
+             assert(item.done)
 
     def test_mark_as_undone(self):
         """ Tests whether items can be marked as undone """
@@ -67,13 +67,13 @@ class BucketListTest(unittest.TestCase):
         bucket.mark_item_as_done("Go to empire state building")
         bucket.mark_item_as_done("Visit Queens")
         for item in bucket.items:
-            assert(item["done"])
+            assert(item.done)
 
         # Now mark as undone and test
         bucket.mark_item_as_undone("Go to empire state building")
         bucket.mark_item_as_undone("Visit Queens")
         for item in bucket.items:
-            assert(not item["done"])
+            assert(not item.done)
 
 if __name__ == '__main__':
     unittest.main()
