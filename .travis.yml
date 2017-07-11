@@ -1,0 +1,16 @@
+language: python
+#version
+python:
+  - "3.6"
+cache: pip
+
+install:
+  - pip install coveralls
+  - pip install coverage
+  - pip install flask
+
+script:
+  - nosetests --with-coverage --cover-package=app
+
+after_success:
+  - coveralls
