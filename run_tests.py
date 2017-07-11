@@ -1,7 +1,5 @@
-import unittest
-from app.bucket_list import BucketList
-from datetime import datetime
-import os, nose, coverage
+import os
+import nose
 
 def main():    
     file_path = os.path.abspath(__file__)
