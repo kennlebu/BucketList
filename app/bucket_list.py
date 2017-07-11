@@ -27,7 +27,7 @@ class BucketList():
         found = False
         for item in self.items:
             if item["item_name"] == item_name:
-                del item["item_name"]
+                self.items.remove(item)
                 found = True # Mark the item as found
 
         if not found:
