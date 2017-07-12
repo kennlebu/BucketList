@@ -15,8 +15,19 @@ def index(category=None):
     if not session.get('logged_in'):
         return redirect(url_for('blueprint.login'))
 
+    # Pass the signed in user to the template
+    logged_in_user = None
+    for user in users:
+        if user.username == session['username']:
+            logged_in_user = user
+
+    # Check whether user has bucket lists
+    has_bucketlists = False
+    if len(logged_in_user.bucketlists) > 0:
+        has_bucketlists = True
+
     return render_template('index.html', name=session['name'],
-                           bucketlists=session['user'].bucketlists)
+                           user=logged_in_user, has_bucketlists=has_bucketlists)
 
 @blueprint.route('/login', methods=['GET','POST'])
 def login():
@@ -42,7 +53,7 @@ def login():
                 if user.username == username and user.password == password:
                     session['logged_in'] = True
                     session['name'] = user.firstname + ' ' + user.lastname
-                    session['user'] = user
+                    session['username'] = username
                     found = True
 
             if not found:
@@ -101,3 +112,9 @@ def logout():
 
     session['logged_in'] = False
     return redirect(url_for('blueprint.login'))
+
+@blueprint.route('/item', methods=['GET','POST'])
+def view_item():
+    """ Views, edits or adds a new bucketlist item """
+
+    return render_template('bucket-list-item.html')
