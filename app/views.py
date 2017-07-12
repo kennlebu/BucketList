@@ -11,10 +11,10 @@ def index():
     """ The Bucket list home page showing a user's bucket list """
 
     # Take the user to the login page if they haven't logged in yet
-    if not session.get('logged_in'):
-        return redirect(url_for('blueprint.login'))
+    #if not session.get('logged_in'):
+        #return redirect(url_for('blueprint.login'))
 
-    return render_template('index.html', username=session['username'])
+    return render_template('index.html', username='username')
 
 @blueprint.route('/login', methods=['GET','POST'])
 def login():
@@ -52,7 +52,7 @@ def login():
 
     return render_template('login.html')
 
-@blueprint.route('/signup')
+@blueprint.route('/signup', methods=['GET','POST'])
 def signup():
     """ Signup a new user """
 
@@ -62,7 +62,7 @@ def signup():
 
     if request.method == 'POST':
         # If submit has been clicked
-        if request.get('signup'):
+        if session.get('signup'):
             firstname = request.form['firstname']
             lastname = request.form['lastname']
             username = request.form['username']
@@ -73,6 +73,7 @@ def signup():
             if (not firstname and not lastname and not username and not date_of_birth
                 and not password and not confirm_password):
                 flash('All fields are required', 'error')
+                return render_template('signup.html')
                 
         
 

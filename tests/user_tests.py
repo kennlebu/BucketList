@@ -1,7 +1,7 @@
 import unittest
 from datetime import datetime
-from ..app.user import User
-from ..app.bucket_list import BucketList
+from app.user import User
+from app.bucket_list import BucketList
 
 class UserTests(unittest.TestCase):
     """ Tests for the user class """
