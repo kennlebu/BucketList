@@ -1,5 +1,5 @@
 import unittest
-from app.bucket_list import BucketList
+from ..app.bucket_list import BucketList
 from datetime import datetime
 
 class BucketListTest(unittest.TestCase):
