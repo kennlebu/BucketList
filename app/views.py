@@ -46,8 +46,7 @@ def login():
                     found = True
 
             if not found:
-                flash('Invalid username or password', 'error')
-                return render_template('login.html', error='Error here')
+                return render_template('login.html', error='Invalid username or password')
 
             # Redirect to index page if the credentials are valid
             return redirect(url_for('blueprint.index'))
@@ -81,6 +80,11 @@ def signup():
             # Check if passwords match
             if not password == confirm_password:
                 return render_template('signup.html', error='The passwords should match')
+
+            # Check whether username is already taken
+            for user in users:
+                if username == user.username:
+                    return render_template('signup.html', error="That username is already taken")
 
             # Create the user
             new_user = User(username, password, firstname, lastname, date_of_birth)
