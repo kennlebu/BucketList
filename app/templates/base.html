@@ -42,13 +42,13 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                {% if username %}
+                {% if name %}
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="/index">All items</a>
                     </li>
                     <li>
-                        <a href="/acomplished">Accomplished</a>
+                        <a href="/accomplished">Accomplished</a>
                     </li>
                     <li>
                         <a href="/pending">Pending</a>
@@ -58,7 +58,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2" style="float:right;">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="#">Ken Lebu</a>
+                            <a href="#">{{ session['name'] }}</a>
                         </li>
                         <li>
                             <a href="/logout">Logout</a>
