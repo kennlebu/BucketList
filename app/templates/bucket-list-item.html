@@ -4,24 +4,22 @@
 
     <div class="row col-md-10" style="position:absolute;padding-top:20px;">
         <div class="col-md-3">&nbsp;</div>
+        {% if request_type == 'new' %}
         <div class="card item-card col-md-6" style="margin:auto;">
             <form action="/add_bucketlist" method="post">
-                <h2><input class="item-edit" type="text" placeholder="Bucketlist name" name="bucketlist_name" /></h2>
+                <h2><input class="item-edit" type="text" placeholder="Bucketlist name" name="bucketlist_name" required /></h2>
 
                 <div class="due_date">
-                    <input class="item-edit" type="text" placeholder="Due date (dd/mm/yyyy)" name="due_date" />
+                    <input class="item-edit" type="text" placeholder="Due date (dd/mm/yyyy)" name="due_date" required />
                 </div>
                 <ul id="bucket-items-list">
                     <li>
                         <div class="col-xs-12">
-                            <input class="add-item-edit" type="text" placeholder="Add bucketlist item" name="item1">
+                            <input class="add-item-edit" type="text" placeholder="Add bucketlist item" name="items">
                         </div>
                     </li>
-                    <li>
-                        <div class="col-xs-12">
-                            <input class="add-item-edit" type="text" placeholder="Item 2" name="item2">
-                        </div>
-                    </li>
+
+                    <input type="hidden" name="request_type" value="new" />
 
                     <li style="list-style:none;margin-top:10px;">
                         <div class="col-xs-12">
@@ -29,10 +27,10 @@
                         </div>
                     </li>
                 </ul>
-                <input class="btn btn-success" type="submit" style="bottom:10px;float:right;margin-top:30px;" value="Save" />
+                <input class="btn btn-success" name="add_bucketlist" type="submit" style="bottom:10px;float:right;margin-top:30px;" value="Save" />
             </form>
         </div>
-
+        {% endif %} {% if request_type == 'view' %}
         <div class="card col-md-6" style="margin:auto;">
             <h2>Visit New York</h2>
 
@@ -60,15 +58,10 @@
                         Go to Queens
                     </div>
                 </li>
-
-                <li style="list-style:none;margin-top:3px;">
-                    <div class="col-xs-12">
-                        <button type="button">Add item</button>
-                    </div>
-                </li>
             </ul>
-            <button type="button" style="bottom:10px;float:right;margin:20px;">Save</button>
+            <input class="btn btn-default" type="submit" style="bottom:10px;float:right;margin:20px;" value="Edit">
         </div>
+        {% endif %}
 
     </div>
 

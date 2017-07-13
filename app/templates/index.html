@@ -2,7 +2,7 @@
 <!-- Page Content -->
 <div class="container">
 
-    <div class="row" style="position:absolute;padding-top:20px;">
+    <div class="row col-md-12" style="position:absolute;padding-top:20px;">
         <div class="col-md-12" style="margin-left:10px;">
             <form method="post" action="/item?type=new">
                 <input class="btn btn-primary" type="submit" value="Add an item" name="add_item" />
@@ -14,17 +14,18 @@
             <a href="#" style="text-decoration:none;color:inherit;">
                 <div class="card card-index col-md-3 left">
                     <h3>{{ item.name }}</h3>
+                    <div class="due_date" style="margin-bottom:20px;">
+                        By {{ item.due_date }}
+                    </div>
+
                     {% for activity in item.items %}
                     <div class="col-xs-12">
                         <label class="css-input switch switch-default">
-                                                <input type="checkbox" {{checked if activity.done}}><span></span> {{ activity.item_name }}
+                                                <input type="checkbox" {{'checked' if activity.done}} onclick='handleCheckboxClick(this);'><span></span> {{ activity.item_name }}
                                             </label>
                     </div>
                     {% endfor %}
 
-                    <div class="due_date">
-                        By 36th birthday
-                    </div>
                 </div>
             </a>
             {% endfor %} {% else %}
@@ -38,5 +39,11 @@
     </div>
 
 </div>
+
+<script>
+    function handleCheckboxClick(cb) {
+        console.log("Clicked, new value = " + cb.checked);
+    }
+</script>
 
 {% endblock %}

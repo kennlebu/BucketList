@@ -117,4 +117,68 @@ def logout():
 def view_item():
     """ Views, edits or adds a new bucketlist item """
 
+    # Check whether adding a new bucketlist or editing or viewing one
+    request_type = request.args.get('type')
+    if request_type == 'new':
+        return render_template('bucket-list-item.html', request_type=request_type)
+    elif request_type == 'edit':
+        return render_template('bucket-list-item.html', request_type=request_type)
+    elif request_type == 'view':
+        return render_template('bucket-list-item.html', request_type=request_type)
+
     return render_template('bucket-list-item.html')
+
+@blueprint.route('/add_bucketlist', methods=['GET', 'POST'])
+def add_bucketlist():
+    """ Adds a new bucket list. Also edits a bucketlist if one is specified using a post request """
+
+    if request.method == 'POST':
+
+        # If submit has been clicked
+        if request.form['add_bucketlist']:
+            bucketlist_name = request.form['bucketlist_name']
+            due_date = request.form['due_date']
+            bucketlist_items = request.form['items']
+            request_type = request.form['request_type']
+
+            # Check if its a new bucketlist or just an edit
+            if request_type == 'new':
+                # Get the logged in user
+                logged_in_user = None
+                for user in users:
+                    if user.username == session['username']:
+                        logged_in_user = user
+
+                if logged_in_user:
+                    logged_in_user.create_bucketlist(bucketlist_name, due_date)
+
+                # Get the created bucketlist and add the items to it
+                for bucketlist in logged_in_user.bucketlists:
+                    if bucketlist.name == bucketlist_name:
+                        bucketlist.add_item(bucketlist_items)
+
+                return redirect(url_for('blueprint.index'))
+
+            # If the user is editing an existing bucketlist
+            elif  request_type == 'edit':
+                # Get the logged in user
+                logged_in_user = None
+                for user in users:
+                    if user.username == session['username']:
+                        logged_in_user = user
+
+                if logged_in_user:
+                    # Get the created bucketlist and edit the items
+                    for bucketlist in logged_in_user.bucketlists:
+                        if bucketlist.name == bucketlist_name:
+                            bucketlist.name = bucketlist_name
+                            bucketlist.items.append(bucketlist_items)
+
+
+    return redirect(url_for('blueprint.index'))
+
+@blueprint.route('/mark-item', methods=['GET'])
+def mark_item():
+    """ Marks a bucket list item as done (accomplished) or undone """
+
+    return render_template('index.html')
