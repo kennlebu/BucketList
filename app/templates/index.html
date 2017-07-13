@@ -5,13 +5,13 @@
     <div class="row col-md-12" style="position:absolute;padding-top:20px;">
         <div class="col-md-12" style="margin-left:10px;">
             <form method="post" action="/item?type=new">
-                <input class="btn btn-primary" type="submit" value="Add an item" name="add_item" />
+                <input class="btn btn-primary" type="submit" value="New bucketlist item" name="add_item" />
             </form>
         </div>
         <div class="cards col-md-12" style="margin:20 auto 0 auto;">
 
             {% if has_bucketlists %} {% for item in user.bucketlists %}
-            <a href="#" style="text-decoration:none;color:inherit;">
+            <a href="/item?type=view&bucketlist={{ item.name }}" style="text-decoration:none;color:inherit;">
                 <div class="card card-index col-md-3 left">
                     <h3>{{ item.name }}</h3>
                     <div class="due_date" style="margin-bottom:20px;">
@@ -21,7 +21,7 @@
                     {% for activity in item.items %}
                     <div class="col-xs-12">
                         <label class="css-input switch switch-default">
-                                                <input type="checkbox" {{'checked' if activity.done}} onclick="handleCheckboxClick(this, '{{ activity.item_name}}', '{{ item.name}}' );"><span></span> {{ activity.item_name }}
+                                                <input class="checkbox" type="checkbox" {{'checked' if activity.done}} onclick="handleCheckboxClick(this, '{{ activity.item_name}}', '{{ item.name}}' );"><span></span> {{ activity.item_name }}
                                             </label>
                     </div>
                     {% endfor %}
@@ -29,9 +29,9 @@
                 </div>
             </a>
             {% endfor %} {% else %}
-            <div class="col-md-3">&nbsp;</div>
+            <div class="col-md-2">&nbsp;</div>
             <div class="col-md-6" style="margin-top:80px;">
-                <p style="font-size:25px;color:grey;text-align:center">You do not have any bucket lists yet. Click 'Add an item' to create one</p>
+                <p style="font-size:25px;color:grey;text-align:center">You do not have anything in your bucketlist yet. Click 'New bucketlist item' to create one</p>
             </div>
             {% endif %}
 

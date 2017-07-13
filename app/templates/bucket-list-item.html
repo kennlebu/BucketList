@@ -48,7 +48,11 @@
             </ul>
             <div style="bottom:5px;float:right;margin:20px 5px 0 0;">
                 <form method="get">
+                    <input type="hidden" value="{{ bucketlist_name }}" name="bucketlist_name" />
                     <input class="btn btn-default" type="submit" value="Edit">&nbsp;
+                </form>
+                <form method="get" action="/delete_bucketlist?bucketlist_name={{ bucketlist_name }}">
+                    <input type="hidden" value="{{ bucketlist_name }}" name="bucketlist_name" />
                     <input class="btn btn-danger" type="submit" value="Delete">
                 </form>
             </div>

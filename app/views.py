@@ -225,6 +225,18 @@ def mark_item():
 
     return "Just a return"
 
+@blueprint.route('/delete_bucketlist', methods=['GET', 'POST'])
+def delete_bucketlist():
+    """ Deletes a bucketlist """
+
+    bucketlist_name = request.args.get('bucketlist_name')
+    user = get_loggedin_user()
+    bucketlist = get_bucketlist(user, bucketlist_name)
+
+    # Remove the bucketlist from the user's list of bucketlists
+    user.bucketlists.remove(bucketlist)
+    return render_template('index.html')
+
 def get_loggedin_user():
     """ Returuns the user that is logged in """
 
