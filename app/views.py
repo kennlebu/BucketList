@@ -140,7 +140,6 @@ def add_bucketlist():
         if request.form['add_bucketlist']:
             bucketlist_name = request.form['bucketlist_name']
             due_date = request.form['due_date']
-            bucketlist_items = request.form['items[]']
             request_type = request.form['request_type']
 
             # Check if its a new bucketlist or just an edit
@@ -150,12 +149,6 @@ def add_bucketlist():
 
                 if logged_in_user:
                     logged_in_user.create_bucketlist(bucketlist_name, due_date)
-
-                # Get the created bucketlist and add the items to it
-                for bucketlist in logged_in_user.bucketlists:
-                    if bucketlist.name == bucketlist_name:
-                        for one in bucketlist_items:
-                            bucketlist.add_item(one)
 
                 return redirect(url_for('blueprint.index'))
 
@@ -170,13 +163,6 @@ def add_bucketlist():
 
                     bucketlist.name = bucketlist_name
                     bucketlist.due_date = due_date
-
-                    # Empty the list then add the new items to it
-                    count = 0 # index of the items to add
-                    del bucketlist.items[:]
-                    for one in bucketlist_items:
-                        bucketlist.add_item(one[count])
-                        count += 1
 
                     return redirect(url_for('blueprint.index'))
 
@@ -242,6 +228,26 @@ def edit_bucketlist():
 
     # Return the values in the bucketlist to the page for editing
     return render_template('bucket-list-item.html', bucketlist=bucketlist, request_type='edit')
+
+@blueprint.route('/add-item', methods=['GET', 'POST'])
+def add_item():
+    """ Adds an item to a bucketlist """
+
+    if request.method == 'POST':
+        if request.form['add_item']:
+
+            # If the item name is not empty
+            if request.form['item_name']:
+                user = get_loggedin_user()
+                bucketlist = get_bucketlist(user, request.form['bucketlist_name'])
+
+                # Add the item to the bucketlist
+                bucketlist.add_item(request.form['item_name'])
+                
+                return render_template('bucket-list-item.html', request_type='view',
+                                       bucketlist_name=bucketlist.name,
+                                       due_date=bucketlist.due_date,
+                                       bucketlist_items=bucketlist.items)
 
 def get_loggedin_user():
     """ Returuns the user that is logged in """

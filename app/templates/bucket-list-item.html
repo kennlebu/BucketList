@@ -12,21 +12,9 @@
                 <div class="due_date">
                     <input class="item-edit" type="text" placeholder="Due date (dd/mm/yyyy)" name="due_date" required />
                 </div>
-                <ul id="bucket-items-list">
-                    <li>
-                        <div class="col-xs-12">
-                            <input class="add-item-edit" type="text" placeholder="Add bucketlist item" name="items[]">
-                        </div>
-                    </li>
 
-                    <input type="hidden" name="request_type" value="new" />
+                <input type="hidden" name="request_type" value="new" />
 
-                    <li style="list-style:none;margin-top:10px;">
-                        <div class="col-xs-12">
-                            <input type="button" class="btn btn-primary" value="Add item">
-                        </div>
-                    </li>
-                </ul>
                 <input class="btn btn-success" name="add_bucketlist" type="submit" style="bottom:10px;float:right;margin-top:30px;" value="Save" />
             </form>
         </div>
@@ -60,14 +48,18 @@
                 <p>By {{ due_date }}</p>
             </div>
             <ul>
-                {% for item in bucketlist_items %}
+                {% if bucketlist_items|length > 0 %} {% for item in bucketlist_items %}
                 <li>
                     <div class="col-xs-12">
                         {{ item.item_name }}
                     </div>
                 </li>
-                {% endfor %}
+                {% endfor %} {% endif %}
             </ul>
+            <div style="bottom:5px;float:right;margin:20px 5px 0 0;">
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal-add-item" type="button">Add item</button>
+            </div>
+
             <div style="bottom:5px;float:right;margin:20px 5px 0 0;">
                 <form method="get" action="/edit_bucketlist?bucketlist_name={{ bucketlist_name }}">
                     <input type="hidden" value="{{ bucketlist_name }}" name="bucketlist_name" />
@@ -85,4 +77,37 @@
 
 </div>
 
-{% endblock %}
+<!-- Modal -->
+<div class="modal" id="modal-add-item" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent remove-margin-b">
+                <div style="padding:0 16px;">
+                    <h3 class="block-title">Add item</h3>
+                </div>
+                <div class="block-content" style="margin-top:10px;">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <form method="post" action="/add-item">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" id="item_name" name="item_name" placeholder="Enter bucketlist item">
+                                    <span class="input-group-btn">
+                                                        <input class="btn btn-primary" type="submit" value="Add item" name="add_item"/>
+                                                        <input type="hidden" value="{{ bucketlist_name }}" name="bucketlist_name"/>
+                                       
+                            </div>             </span>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin-top:50px;">
+                    <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Modal -->
+
+
+    {% endblock %}

@@ -17,14 +17,13 @@
                     <div class="due_date" style="margin-bottom:20px;">
                         By {{ item.due_date }}
                     </div>
-
-                    {% for activity in item.items %}
+                    {% if item.items|length > 0 %} {% for activity in item.items %}
                     <div class="col-xs-12">
                         <label class="css-input switch switch-default">
                                                 <input class="checkbox" type="checkbox" {{'checked' if activity.done}} onclick="handleCheckboxClick(this, '{{ activity.item_name}}', '{{ item.name}}' );"><span></span> {{ activity.item_name }}
                                             </label>
                     </div>
-                    {% endfor %}
+                    {% endfor %} {% endif %}
 
                 </div>
             </a>
