@@ -15,7 +15,7 @@
                 <ul id="bucket-items-list">
                     <li>
                         <div class="col-xs-12">
-                            <input class="add-item-edit" type="text" placeholder="Add bucketlist item" name="items">
+                            <input class="add-item-edit" type="text" placeholder="Add bucketlist item" name="items[]">
                         </div>
                     </li>
 
@@ -26,6 +26,28 @@
                             <input type="button" class="btn btn-primary" value="Add item">
                         </div>
                     </li>
+                </ul>
+                <input class="btn btn-success" name="add_bucketlist" type="submit" style="bottom:10px;float:right;margin-top:30px;" value="Save" />
+            </form>
+        </div>
+        {% endif %} {% if request_type == 'edit' %}
+        <div class="card item-card col-md-6" style="margin:auto;">
+            <form action="/add_bucketlist" method="post">
+                <h2><input class="item-edit" type="text" placeholder="Bucketlist name" name="bucketlist_name" value="{{ bucketlist.name }}" required /></h2>
+
+                <div class="due_date">
+                    <input class="item-edit" type="text" placeholder="Due date (dd/mm/yyyy)" name="due_date" value="{{ bucketlist.due_date }}" required />
+                </div>
+                <ul id="bucket-items-list">
+                    {% for item in bucketlist.items %}
+                    <li>
+                        <div class="col-xs-12">
+                            <input class="add-item-edit" type="text" placeholder="Add bucketlist item" name="items[]" value="{{ item.item_name }}">
+                        </div>
+                    </li>
+                    {% endfor %}
+                    <input type="hidden" name="request_type" value="edit" />
+                    <input type="hidden" name="old_name" value="{{ bucketlist.name }}" />
                 </ul>
                 <input class="btn btn-success" name="add_bucketlist" type="submit" style="bottom:10px;float:right;margin-top:30px;" value="Save" />
             </form>
@@ -47,7 +69,7 @@
                 {% endfor %}
             </ul>
             <div style="bottom:5px;float:right;margin:20px 5px 0 0;">
-                <form method="get">
+                <form method="get" action="/edit_bucketlist?bucketlist_name={{ bucketlist_name }}">
                     <input type="hidden" value="{{ bucketlist_name }}" name="bucketlist_name" />
                     <input class="btn btn-default" type="submit" value="Edit">&nbsp;
                 </form>
