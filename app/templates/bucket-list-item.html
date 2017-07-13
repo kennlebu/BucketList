@@ -4,6 +4,35 @@
 
     <div class="row col-md-10" style="position:absolute;padding-top:20px;">
         <div class="col-md-3">&nbsp;</div>
+        <div class="card item-card col-md-6" style="margin:auto;">
+            <form action="/add_bucketlist" method="post">
+                <h2><input class="item-edit" type="text" placeholder="Bucketlist name" name="bucketlist_name" /></h2>
+
+                <div class="due_date">
+                    <input class="item-edit" type="text" placeholder="Due date (dd/mm/yyyy)" name="due_date" />
+                </div>
+                <ul id="bucket-items-list">
+                    <li>
+                        <div class="col-xs-12">
+                            <input class="add-item-edit" type="text" placeholder="Add bucketlist item" name="item1">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="col-xs-12">
+                            <input class="add-item-edit" type="text" placeholder="Item 2" name="item2">
+                        </div>
+                    </li>
+
+                    <li style="list-style:none;margin-top:10px;">
+                        <div class="col-xs-12">
+                            <input type="button" class="btn btn-primary" value="Add item">
+                        </div>
+                    </li>
+                </ul>
+                <input class="btn btn-success" type="submit" style="bottom:10px;float:right;margin-top:30px;" value="Save" />
+            </form>
+        </div>
+
         <div class="card col-md-6" style="margin:auto;">
             <h2>Visit New York</h2>
 
