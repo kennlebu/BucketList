@@ -124,7 +124,13 @@ def view_item():
     elif request_type == 'edit':
         return render_template('bucket-list-item.html', request_type=request_type)
     elif request_type == 'view':
-        return render_template('bucket-list-item.html', request_type=request_type)
+        logged_in_user = get_loggedin_user()
+        bucketlist = get_bucketlist(logged_in_user, request.args.get('bucketlist'))
+
+        return render_template('bucket-list-item.html', request_type=request_type,
+                               bucketlist_name=bucketlist.name,
+                               due_date=bucketlist.due_date,
+                               bucketlist_items=bucketlist.items)
 
     return render_template('bucket-list-item.html')
 
@@ -169,16 +175,66 @@ def add_bucketlist():
 
                 if logged_in_user:
                     # Get the created bucketlist and edit the items
+                    count = 0 # For the getting the index of the selected bucketlist
                     for bucketlist in logged_in_user.bucketlists:
                         if bucketlist.name == bucketlist_name:
                             bucketlist.name = bucketlist_name
                             bucketlist.items.append(bucketlist_items)
 
+    # Get request
+    else:
+        bucketlist_name = request.args.get('bucketlist')
+
 
     return redirect(url_for('blueprint.index'))
 
-@blueprint.route('/mark-item', methods=['GET'])
+@blueprint.route('/markitem', methods=['GET', 'POST'])
 def mark_item():
     """ Marks a bucket list item as done (accomplished) or undone """
 
-    return render_template('index.html')
+    if request.method == 'POST':
+        if request.form['checked']:
+            # Get the user we want
+            our_user = None
+            for person in users:
+                if person.username == session['username']:
+                    our_user = person
+
+            # If the item has been checked, mark it as done
+            if request.form['checked'] == 'checked':
+                # Get the bucket list item and mark it as done
+                for bucketlist in our_user.bucketlists:
+                    if bucketlist.name == request.form['bucketlist_name']:
+                        bucketlist.mark_item_as_done(request.form['item_name'])
+                        return "marked as done"
+                    return "bucketlist not found"
+
+            elif request.form['checked'] == 'not_checked':
+                # Get the bucket list item and mark it as undone
+                for bucketlist in our_user.bucketlists:
+                    if bucketlist.name == request.form['bucketlist_name']:
+                        bucketlist.mark_item_as_undone(request.form['item_name'])
+                        return "marked as undone"
+                    return "bucketlist not found"
+
+            else:
+                return "not checked or checked. Just weird"
+
+        return "Checked value not passed"
+
+
+    return "Just a return"
+
+def get_loggedin_user():
+    """ Returuns the user that is logged in """
+
+    for person in users:
+        if person.username == session['username']:
+            return person
+
+def get_bucketlist(user, bucketlist_name):
+    """ Returns the bucketlists of the logged in user """
+
+    for bucket in user.bucketlists:
+        if bucket.name == bucketlist_name:
+            return bucket

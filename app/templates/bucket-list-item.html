@@ -32,34 +32,26 @@
         </div>
         {% endif %} {% if request_type == 'view' %}
         <div class="card col-md-6" style="margin:auto;">
-            <h2>Visit New York</h2>
+            <h2>{{ bucketlist_name }}</h2>
 
             <div class="due_date">
-                <p>By 36th birthday</p>
+                <p>By {{ due_date }}</p>
             </div>
             <ul>
+                {% for item in bucketlist_items %}
                 <li>
                     <div class="col-xs-12">
-                        Climb Empire State building
+                        {{ item.item_name }}
                     </div>
                 </li>
-                <li>
-                    <div class="col-xs-12">
-                        Visit Statue of Liberty
-                    </div>
-                </li>
-                <li>
-                    <div class="col-xs-12">
-                        Visit Stark tower
-                    </div>
-                </li>
-                <li>
-                    <div class="col-xs-12">
-                        Go to Queens
-                    </div>
-                </li>
+                {% endfor %}
             </ul>
-            <input class="btn btn-default" type="submit" style="bottom:10px;float:right;margin:20px;" value="Edit">
+            <div style="bottom:5px;float:right;margin:20px 5px 0 0;">
+                <form method="get">
+                    <input class="btn btn-default" type="submit" value="Edit">&nbsp;
+                    <input class="btn btn-danger" type="submit" value="Delete">
+                </form>
+            </div>
         </div>
         {% endif %}
 
