@@ -21,7 +21,7 @@
                     {% for activity in item.items %}
                     <div class="col-xs-12">
                         <label class="css-input switch switch-default">
-                                                <input type="checkbox" {{'checked' if activity.done}} onclick='handleCheckboxClick(this);'><span></span> {{ activity.item_name }}
+                                                <input type="checkbox" {{'checked' if activity.done}} onclick="handleCheckboxClick(this, '{{ activity.item_name}}', '{{ item.name}}' );"><span></span> {{ activity.item_name }}
                                             </label>
                     </div>
                     {% endfor %}
@@ -41,8 +41,33 @@
 </div>
 
 <script>
-    function handleCheckboxClick(cb) {
-        console.log("Clicked, new value = " + cb.checked);
+    var clicked;
+
+    function handleCheckboxClick(cb, item_name, bucketlist_name) {
+        clicked = cb.checked;
+        console.log("Clicked, new value = " + cb.checked + ", item name = " + item_name + ", bucketlist = " + bucketlist_name);
+
+        if (cb.checked) {
+            clicked = 'checked';
+        } else {
+            clicked = 'not_checked';
+        }
+
+        // some movie data
+        var params = {
+            'checked': clicked,
+            'item_name': item_name,
+            'bucketlist_name': bucketlist_name
+        }
+
+        $.ajax({
+                url: '/markitem',
+                type: 'POST',
+                data: JSON.stringify(params), // converts js value to JSON string
+            })
+            .done(function(result) { // on success get the return object from server
+                console.log(result) // do whatever with it. In this case see it in console
+            });
     }
 </script>
 
