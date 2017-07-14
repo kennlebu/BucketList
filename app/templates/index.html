@@ -1,0 +1,74 @@
+{% extends "base.html" %} {% block content %}
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row col-md-12" style="position:absolute;padding-top:20px;">
+        <div class="col-md-12" style="margin-left:10px;">
+            <form method="post" action="/item?type=new">
+                <input class="btn btn-primary" type="submit" value="New bucketlist item" name="add_item" />
+            </form>
+        </div>
+        <div class="cards col-md-12" style="margin:20 auto 0 auto;">
+
+            {% if has_bucketlists %} {% for item in user.bucketlists %}
+            <a href="/item?type=view&bucketlist={{ item.name }}" style="text-decoration:none;color:inherit;">
+                <div class="card card-index col-md-3 left">
+                    <h3>{{ item.name }}</h3>
+                    <div class="due_date" style="margin-bottom:20px;">
+                        By {{ item.due_date }}
+                    </div>
+                    {% if item.items|length > 0 %} {% for activity in item.items %}
+                    <div class="col-xs-12">
+                        <label class="css-input css-checkbox css-checkbox-rounded css-checkbox-md css-checkbox-default">
+                                                <input type="checkbox" {{'checked' if activity.done}} onclick="handleCheckboxClick(this, '{{ activity.item_name}}', '{{ item.name}}' );"> {{ activity.item_name }}
+                                            </label>
+                    </div>
+                    {% endfor %} {% endif %}
+
+                </div>
+            </a>
+            {% endfor %} {% else %}
+            <div class="col-md-2">&nbsp;</div>
+            <div class="col-md-6" style="margin-top:80px;">
+                <p style="font-size:25px;color:grey;text-align:center">You do not have anything in your bucketlist yet. Click 'New bucketlist item' to create one</p>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var clicked;
+
+    function handleCheckboxClick(cb, item_name, bucketlist_name) {
+        clicked = cb.checked;
+        console.log("Clicked, new value = " + cb.checked + ", item name = " + item_name + ", bucketlist = " + bucketlist_name);
+
+        if (cb.checked) {
+            clicked = 'checked';
+        } else {
+            clicked = 'not_checked';
+        }
+
+        // some movie data
+        var params = {
+            'checked': clicked,
+            'item_name': item_name,
+            'bucketlist_name': bucketlist_name
+        }
+
+        $.ajax({
+                url: '/markitem',
+                type: 'POST',
+                data: params,
+                //data: JSON.stringify(params), // converts js value to JSON string
+            })
+            .done(function(result) { // on success get the return object from server
+                console.log(result) // do whatever with it. In this case see it in console
+            });
+    }
+</script>
+
+{% endblock %}
