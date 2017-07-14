@@ -56,19 +56,27 @@
                 </li>
                 {% endfor %} {% endif %}
             </ul>
-            <div style="bottom:5px;float:right;margin:20px 5px 0 0;">
-                <button class="btn btn-success" data-toggle="modal" data-target="#modal-add-item" type="button">Add item</button>
-            </div>
+            <div style="bottom:0px;margin-top:40px;">
+                <div style="float:left;margin:0 5px 0 0;">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#modal-add-item" type="button">Add item</button>
+                </div>
 
-            <div style="bottom:5px;float:right;margin:20px 5px 0 0;">
-                <form method="get" action="/edit_bucketlist?bucketlist_name={{ bucketlist_name }}">
-                    <input type="hidden" value="{{ bucketlist_name }}" name="bucketlist_name" />
-                    <input class="btn btn-default" type="submit" value="Edit">&nbsp;
-                </form>
-                <form method="get" action="/delete_bucketlist?bucketlist_name={{ bucketlist_name }}">
-                    <input type="hidden" value="{{ bucketlist_name }}" name="bucketlist_name" />
-                    <input class="btn btn-danger" type="submit" value="Delete">
-                </form>
+                <div style="float:right;margin:0 5px 0 0;">
+                    <ul style="list-style:none;">
+                        <li style="float:left;">
+                            <form method="get" action="/edit_bucketlist?bucketlist_name={{ bucketlist_name }}">
+                                <input type="hidden" value="{{ bucketlist_name }}" name="bucketlist_name" />
+                                <input class="btn btn-default" type="submit" value="Edit">&nbsp;
+                            </form>
+                        </li>
+                        <li style="float:left;">
+                            <form method="get" action="/delete_bucketlist?bucketlist_name={{ bucketlist_name }}">
+                                <input type="hidden" value="{{ bucketlist_name }}" name="bucketlist_name" />
+                                <input class="btn btn-danger" type="submit" value="Delete">
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         {% endif %}
@@ -90,7 +98,7 @@
                         <div class="col-md-12">
                             <form method="post" action="/add-item">
                                 <div class="input-group">
-                                    <input class="form-control" type="text" id="item_name" name="item_name" placeholder="Enter bucketlist item">
+                                    <input class="form-control" type="text" id="item_name" name="item_name" placeholder="Enter bucketlist item" required>
                                     <span class="input-group-btn">
                                                         <input class="btn btn-primary" type="submit" value="Add item" name="add_item"/>
                                                         <input type="hidden" value="{{ bucketlist_name }}" name="bucketlist_name"/>

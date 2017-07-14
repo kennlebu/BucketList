@@ -243,11 +243,12 @@ def add_item():
 
                 # Add the item to the bucketlist
                 bucketlist.add_item(request.form['item_name'])
-                
+
                 return render_template('bucket-list-item.html', request_type='view',
                                        bucketlist_name=bucketlist.name,
                                        due_date=bucketlist.due_date,
-                                       bucketlist_items=bucketlist.items)
+                                       bucketlist_items=bucketlist.items,
+                                       name=session['name'])
 
 def get_loggedin_user():
     """ Returuns the user that is logged in """
