@@ -216,7 +216,7 @@ def delete_bucketlist():
 
     # Remove the bucketlist from the user's list of bucketlists
     user.bucketlists.remove(bucketlist)
-    return render_template('index.html')
+    return redirect(url_for('blueprint.index'))
 
 @blueprint.route('/edit_bucketlist', methods=['GET', "POST"])
 def edit_bucketlist():
