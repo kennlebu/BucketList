@@ -8,12 +8,12 @@
                 <h1>We've all got that list of stuff we'd like to do before we reach a certain age.</h1>
                 <p class="lead">DaBucketList is here to help you keep track of that. Sign up and let's help you achieve your goals!</p>
             </div>
-            <!-- Default Elements -->
-            <div class="block col-md-6" style="padding-left:5%;">
+
+            <div class="block col-md-6" style="padding:0 0 10px 5%;border-radius:2px;background-color:rgba(240, 240, 240, 0.7);">
                 <div class="block-header">
                     <h3 class="block-title">Log in</h3>
                     {% if error %}
-                    <p class="error">{{ error }} {% endif %}
+                    <p style="color:tomato;">{{ error }} {% endif %}
                 </div>
 
                 <div class="block-content block-content-narrow">
@@ -30,16 +30,16 @@
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <input class="btn btn-sm btn-primary col-xs-10" type="submit" name="login" value="Log in">
+                                <input class="btn btn-primary col-xs-10" type="submit" name="login" value="Log in">
                             </div>
                         </div>
                         <div class="col-xs-10">
-                            <a href="/signup">New user? Sign up for free!</a>
+                            <a href="/signup" style="color:inherit;">New user? Sign up for free!</a>
                         </div>
                     </form>
                 </div>
             </div>
-            <!-- END Default Elements -->
+
         </div>
     </div>
 

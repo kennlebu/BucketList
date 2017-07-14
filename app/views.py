@@ -8,7 +8,7 @@ users = []
 
 @blueprint.route('/')
 @blueprint.route('/index')
-def index(category=None):
+def index():
     """ The Bucket list home page showing a user's bucket list """
 
     # Take the user to the login page if they haven't logged in yet
