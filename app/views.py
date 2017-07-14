@@ -176,27 +176,23 @@ def mark_item():
     if request.method == 'POST':
         if request.form['checked']:
             # Get the user we want
-            our_user = None
-            for person in users:
-                if person.username == session['username']:
-                    our_user = person
+            our_user = get_loggedin_user()
+            bucketlist = get_bucketlist(our_user, request.form['bucketlist_name'])
 
             # If the item has been checked, mark it as done
             if request.form['checked'] == 'checked':
                 # Get the bucket list item and mark it as done
-                for bucketlist in our_user.bucketlists:
-                    if bucketlist.name == request.form['bucketlist_name']:
-                        bucketlist.mark_item_as_done(request.form['item_name'])
-                        return "marked as done"
-                    return "bucketlist not found"
+                if bucketlist.name == request.form['bucketlist_name']:
+                    bucketlist.mark_item_as_done(request.form['item_name'])
+                    return "marked as done"
+                return "bucketlist not found"
 
             elif request.form['checked'] == 'not_checked':
                 # Get the bucket list item and mark it as undone
-                for bucketlist in our_user.bucketlists:
-                    if bucketlist.name == request.form['bucketlist_name']:
-                        bucketlist.mark_item_as_undone(request.form['item_name'])
-                        return "marked as undone"
-                    return "bucketlist not found"
+                if bucketlist.name == request.form['bucketlist_name']:
+                    bucketlist.mark_item_as_undone(request.form['item_name'])
+                    return "marked as undone"
+                return "bucketlist not found"
 
             else:
                 return "not checked or checked. Just weird"
