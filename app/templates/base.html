@@ -3,16 +3,38 @@
 <head>
     <title>DaBucketList</title>
     <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+    <script type=text/javascript src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 
     <style>
         body {
             padding-top: 70px;
+            background: url("{{ url_for('static', filename='img/bg.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
         }
         
         .card {
             border-radius: 3px;
-            border: 1px solid gray;
             margin: 10 10px;
+            position: relative;
+            background-color: #fafafa;
+            box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+            padding-bottom: 16px;
+        }
+        
+        .card-index {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            cursor: pointer;
+            box-shadow: 1px 13px 25px 0 rgba(0, 0, 0, 0.3), 0 11px 7px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        .item-card {
+            min-height: 250px;
         }
         
         .due_date {
@@ -20,6 +42,39 @@
             font-size: 13px;
             position: relative;
             margin-top: 10px;
+        }
+        
+        .item-edit {
+            border: none;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+            background: transparent;
+            margin-top: 10px;
+        }
+        
+        .item-edit:focus {
+            outline: none;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.8);
+        }
+        
+        .add-item-edit {
+            border: none;
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        .add-item-edit:focus {
+            outline: none;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+            background: transparent;
+        }
+        
+        #bucket-items-list {
+            margin-top: 15px;
+        }
+        
+        #bucket-items-list>li {
+            list-style: none;
+            margin-left: 10px;
+            padding-left: 0;
         }
     </style>
 
@@ -40,23 +95,17 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                {% if username %}
+                {% if name %}
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="/index">All items</a>
-                    </li>
-                    <li>
-                        <a href="/acomplished">Accomplished</a>
-                    </li>
-                    <li>
-                        <a href="/pending">Pending</a>
                     </li>
                 </ul>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2" style="float:right;">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="#">Ken Lebu</a>
+                            <a href="#">{{ session['name'] }}</a>
                         </li>
                         <li>
                             <a href="/logout">Logout</a>
