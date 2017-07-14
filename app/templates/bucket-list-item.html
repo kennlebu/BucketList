@@ -9,13 +9,13 @@
             <form action="/add_bucketlist" method="post">
                 <h2><input class="item-edit" type="text" placeholder="Bucketlist name" name="bucketlist_name" required /></h2>
 
-                <div class="due_date">
+                <div class="due_date" style="margin-top:30px;">
                     <input class="item-edit" type="text" placeholder="Due date (dd/mm/yyyy)" name="due_date" required />
                 </div>
 
                 <input type="hidden" name="request_type" value="new" />
 
-                <input class="btn btn-success" name="add_bucketlist" type="submit" style="bottom:10px;float:right;margin-top:30px;" value="Save" />
+                <input class="btn btn-success" name="add_bucketlist" type="submit" style="bottom:0px;float:right;margin-top:50px;" value="Save" />
             </form>
         </div>
         {% endif %} {% if request_type == 'edit' %}

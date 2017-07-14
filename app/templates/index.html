@@ -20,7 +20,7 @@
                     {% if item.items|length > 0 %} {% for activity in item.items %}
                     <div class="col-xs-12">
                         <label class="css-input css-checkbox css-checkbox-rounded css-checkbox-md css-checkbox-default">
-                                                <input class="checkbox" type="checkbox" {{'checked' if activity.done}} onclick="handleCheckboxClick(this, '{{ activity.item_name}}', '{{ item.name}}' );"><span></span> {{ activity.item_name }}
+                                                <input type="checkbox" {{'checked' if activity.done}} onclick="handleCheckboxClick(this, '{{ activity.item_name}}', '{{ item.name}}' );"> {{ activity.item_name }}
                                             </label>
                     </div>
                     {% endfor %} {% endif %}
