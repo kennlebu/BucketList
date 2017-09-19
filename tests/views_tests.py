@@ -2,7 +2,6 @@ import unittest
 import app.views
 from app.user import User
 from flask import url_for, Response
-import requests
 
 class ViewsTests(unittest.TestCase):
     """ Contains tests for the views """
@@ -22,13 +21,6 @@ class ViewsTests(unittest.TestCase):
         with app.app.test_request_context():
             self.assertEqual(app.views.logout().status_code, 302)
             self.assertEqual(app.views.logout().location, url_for('blueprint.login'))
-
-    def test_view_bucketlist(self):
-        """ Tests whether page for viewing a bucketlist loads """
-
-        with app.app.test_client() as client:
-            res = client.get('/item?type=new')
-            self.assertEqual(res.location().status_code, 200)
 
 if __name__ == '__main__':
     unittest.main()
